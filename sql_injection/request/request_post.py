@@ -10,7 +10,6 @@ class RequestPost(RequestABC):
 
     def __init__(self, url: str) -> None:
         super().__init__(url)
-        print(self.url)
 
     def request(self) -> requests.Response:
         return requests.post(self.url, params=self.params, verify=True)

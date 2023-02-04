@@ -17,7 +17,6 @@ class RequestGet(RequestABC):
         """
 
         super().__init__()
-        print(self.url)
 
     def request(self) -> requests.Response:
         return requests.get(self.url, params=self.params, verify=True)

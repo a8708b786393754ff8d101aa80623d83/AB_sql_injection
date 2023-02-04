@@ -15,4 +15,12 @@ soup = bs4.BeautifulSoup(r.content, 'lxml')
 
 form = Form(soup.find('form'))
 
-print(form)
+method = form.method.lower()
+if method == 'get': 
+    req = RequestGet(url)
+
+elif method == 'post': 
+    req = RequestPost(url)
+
+print(req.url)
+
