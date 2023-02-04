@@ -1,4 +1,5 @@
-import bs4 
+import bs4
+
 
 class Form(object):
     """Classe form, elle manie les fourmuliare
@@ -7,11 +8,11 @@ class Form(object):
         object (object): object
     """
 
-    def __init__(self, form: bs4.BeautifulSoup) -> None: 
-        self.form = form 
+    def __init__(self, form: bs4.BeautifulSoup) -> None:
+        self.form = form
 
     @property
-    def names(self) -> list[str]: 
+    def names(self) -> list[str]:
         """Renvoie une liste de name trouvée dans le formulaire
 
         Returns:
@@ -19,13 +20,13 @@ class Form(object):
         """
 
         names = []
-        for input in  self.form.select('input'): 
+        for input in self.form.select('input'):
             names.append(input.name)
-        
-        return names 
+
+        return names
 
     @property
-    def action(self) -> str: 
+    def action(self) -> str:
         """Renvoie l'action du formulaire
 
         Returns:
@@ -35,7 +36,7 @@ class Form(object):
         return self.form.get('action')
 
     @property
-    def method(self) -> str: 
+    def method(self) -> str:
         """Renvoie les methode du formulaire
 
         Returns:
