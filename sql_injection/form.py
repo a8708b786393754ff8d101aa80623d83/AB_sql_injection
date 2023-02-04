@@ -11,24 +11,28 @@ class Form(object):
         self.form = form 
 
     @property
-    def names(self) -> None: 
-        """_summary_
+    def names(self) -> list[str]: 
+        """Renvoie une liste de name trouvée dans le formulaire
 
         Returns:
-            _type_: _description_
+            list[str]: liste de name
         """
+
+        names = []
+        for input in  self.form.select('input'): 
+            names.append(input.name)
         
-        return self.form.selector('input[name]')
+        return names 
 
     @property
-    def action(self) -> None: 
-        """_summary_
+    def action(self) -> str|list: 
+        """Renvoie l'action du formulaire
 
         Returns:
-            _type_: _description_
+            str|list: action
         """
 
-        return self.form.selector('form[action]')        
+        return self.form.find_all('input').action        
 
     @property
     def method(self) -> None: 
