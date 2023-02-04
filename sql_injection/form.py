@@ -25,21 +25,21 @@ class Form(object):
         return names 
 
     @property
-    def action(self) -> str|list: 
+    def action(self) -> str: 
         """Renvoie l'action du formulaire
 
         Returns:
             str|list: action
         """
 
-        return self.form.find_all('input').action        
+        return self.form.get('action')
 
     @property
-    def method(self) -> None: 
-        """_summary_
+    def method(self) -> str: 
+        """Renvoie les methode du formulaire
 
         Returns:
-            _type_: _description_
+            str|list: method
         """
 
-        return self.form.selector('form[method]')
+        return self.form.get('method')

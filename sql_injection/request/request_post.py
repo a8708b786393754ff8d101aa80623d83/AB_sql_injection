@@ -1,4 +1,4 @@
-from request.request_abc import RequestABC
+from .request_abc import RequestABC
 import requests # lib PyPi requests
 
 class RequestPost(RequestABC): 
