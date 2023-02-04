@@ -11,6 +11,9 @@ class Form(object):
     def __init__(self, form: bs4.BeautifulSoup) -> None:
         self.form = form
 
+    def __str__(self) -> str:
+        return self.form.__str__()
+
     @property
     def names(self) -> list[str]:
         """Renvoie une liste de name trouvée dans le formulaire

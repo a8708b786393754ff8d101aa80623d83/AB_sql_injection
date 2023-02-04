@@ -15,4 +15,4 @@ soup = bs4.BeautifulSoup(r.content, 'lxml')
 
 form = Form(soup.find('form'))
 
-print(form.action)
+print(form)
