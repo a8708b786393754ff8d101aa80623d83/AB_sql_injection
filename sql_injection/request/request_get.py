@@ -16,7 +16,7 @@ class RequestGet(RequestABC):
             url (str): url
         """
 
-        super().__init__()
+        super().__init__(url)
 
     def request(self) -> requests.Response:
         return requests.get(self.url, params=self.params, data=self.payload, verify=True)
