@@ -8,12 +8,11 @@ class RequestABC(ABC):
     Args:
         ABC (ABCMeta): classe abs
     """
-    params: dict
-    url: str
 
     def __init__(self, url: str) -> None:
         super().__init__()
         self.url = url
+        self.params = {}
 
     @abstractmethod
     def request(self) -> requests.Response:

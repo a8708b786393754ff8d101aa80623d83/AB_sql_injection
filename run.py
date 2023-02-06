@@ -8,7 +8,7 @@ from sql_injection.form import Form
 import requests, bs4 
 
 
-url = 'http://192.168.0.10/dvwa/vulnerabilities/sqli/'
+url = 'http://192.168.0.10/dvwa/login.php'
 
 r = requests.get(url)
 soup = bs4.BeautifulSoup(r.content, 'lxml')
@@ -22,5 +22,5 @@ if method == 'get':
 elif method == 'post': 
     req = RequestPost(url)
 
-print(req.url)
+print(req.request())
 
