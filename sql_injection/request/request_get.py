@@ -19,7 +19,10 @@ class RequestGet(RequestABC):
         super().__init__()
 
     def request(self) -> requests.Response:
-        return requests.get(self.url, params=self.params, verify=True)
+        return requests.get(self.url, params=self.params, data=self.payload, verify=True)
 
     def set_params(self, data: dict) -> None:
         return super().set_params(data)
+
+    def set_payload(self, data: dict, element: str) -> None: 
+        return super().set_params(data, element)
