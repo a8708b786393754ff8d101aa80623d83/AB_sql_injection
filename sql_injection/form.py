@@ -16,7 +16,7 @@ class Form(object):
 
     @property
     def names(self) -> list[str]:
-        """Renvoie une liste de name trouvée dans le formulaire
+        """Renvoie une liste de tuple avec le name est sa valeur trouvée dans le formulaire
 
         Returns:
             list[str]: liste de name
@@ -24,7 +24,7 @@ class Form(object):
 
         names = []
         for input in self.form.select('input'):
-            names.append(input.name)
+            names.append((input['name'], input.get('value')))
 
         return names
 
