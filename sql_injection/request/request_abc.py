@@ -12,6 +12,7 @@ class RequestABC(ABC):
     def __init__(self, url: str) -> None:
         super().__init__()
         self.url = url
+        self.payload = {}
         self.params = {}
 
     @abstractmethod
@@ -31,4 +32,17 @@ class RequestABC(ABC):
                 self.params[key] += value
             else:
                 self.params[key] = value
-        
+    
+    @abstractmethod
+    def set_payload(self, data: dict, element: str) -> None: 
+        """Ajoute est formatte les donées dans l'attributs payload
+
+        Args:
+            data (dict): données qui doivent etre stocké
+        """
+
+        for key, value in data.items(): 
+            if value: 
+                self.payload[key] = value
+            else:
+                self.payload[key] = element.strip()
