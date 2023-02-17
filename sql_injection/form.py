@@ -7,16 +7,23 @@ class Form(object):
     Args:
         object (object): object
     """
+    NAMES_USER = ['username', 'email', 'nom_utilisateur']
+    NAMES_PASSWORD = ['password', 'passwd', 'pass', 'motdepasse']
 
     def __init__(self, form: bs4.BeautifulSoup) -> None:
         self.form = form
+        self.password = ''
+        self.username = ''
+
+        self.__set_credentials()
+        
 
     def __str__(self) -> str:
         return self.form.__str__()
 
     @property
-    def names(self) -> list[str]:
-        """Renvoie une liste de name trouvée dans le formulaire
+    def names(self) -> list[dict]:
+        """Renvoie une liste de tuple avec le name est sa valeur trouvée dans le formulaire
 
         Returns:
             list[str]: liste de name
@@ -24,7 +31,7 @@ class Form(object):
 
         names = []
         for input in self.form.select('input'):
-            names.append(input.name)
+            names.append({input.get('name'): input.get('value')})
 
         return names
 
@@ -47,3 +54,13 @@ class Form(object):
         """
 
         return self.form.get('method')
+
+    def __set_credentials(self) -> None:
+        """Methode privée pour ajoutée les name de connexion a leurs attribut."""
+
+        for element in self.names:
+            for key in element.keys():
+                if key in self.NAMES_USER:
+                    self.username = key
+                elif key in self.NAMES_PASSWORD:
+                    self.password = key
