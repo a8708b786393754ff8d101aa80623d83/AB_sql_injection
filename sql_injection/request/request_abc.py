@@ -39,6 +39,7 @@ class RequestABC(ABC):
 
         Args:
             data (dict): données qui doivent etre stocké
+            element (str): element 
         """
 
         for key, value in data.items(): 
