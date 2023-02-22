@@ -7,8 +7,8 @@ class Form(object):
     Args:
         object (object): object
     """
-    NAMES_USER = ['username', 'email', 'nom_utilisateur']
-    NAMES_PASSWORD = ['password', 'passwd', 'pass', 'motdepasse']
+    NAMES_USER = ['username', 'email', 'nom_utilisateur', 'session_key', 'session_username', 'session_user']
+    NAMES_PASSWORD = ['password', 'passwd', 'pass', 'motdepasse', 'session_password', 'session_passwd', 'session_pass']
 
     def __init__(self, form: bs4.BeautifulSoup) -> None:
         self.form = form
