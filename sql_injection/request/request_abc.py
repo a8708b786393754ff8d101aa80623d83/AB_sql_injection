@@ -13,7 +13,6 @@ class RequestABC(ABC):
         super().__init__()
         self.url = url
         self.payload = {}
-        self.params = {}
 
     @abstractmethod
     def request(self) -> requests.Response:
@@ -22,16 +21,6 @@ class RequestABC(ABC):
         Returns:
             requests.Response: _description_
         """
-
-    @abstractmethod
-    def set_params(self, data: dict) -> None:
-        """Ajoute les parametre dans l'attribut params."""
-
-        for key, value in data.items():
-            if key in self.params:
-                self.params[key] += value
-            else:
-                self.params[key] = value
     
     @abstractmethod
     def set_payload(self, data: dict, element: str) -> None: 
