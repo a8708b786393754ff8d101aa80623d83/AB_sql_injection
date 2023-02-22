@@ -17,12 +17,20 @@ class RequestGet(RequestABC):
         """
 
         super().__init__(url)
+        self.params = {}
+
 
     def request(self) -> requests.Response:
         return requests.get(self.url, params=self.params, data=self.payload, verify=True)
 
     def set_params(self, data: dict) -> None:
-        return super().set_params(data)
+        """Ajoute les parametre dans l'attribut params."""
+
+        for key, value in data.items():
+            if key in self.params:
+                self.params[key] += value
+            else:
+                self.params[key] = value
 
     def set_payload(self, data: dict, element: str) -> None: 
         return super().set_params(data, element)
