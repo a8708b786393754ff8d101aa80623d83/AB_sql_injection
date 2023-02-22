@@ -1,4 +1,4 @@
-class Entities(object):
+class Entitie(object):
     """Entitée de base 
 
     Args:
