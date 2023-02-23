@@ -3,22 +3,16 @@ import requests  # lib PyPi requests
 
 
 class RequestGet(RequestABC):
-    """_summary_
+    """Classe pour les requete en GET
 
     Args:
-        RequestABC (_type_): _description_
+        RequestABC (object): classe mere
     """
 
     def __init__(self, url: str) -> None:
-        """Méthode constructrice.
-
-        Args:
-            url (str): url
-        """
-
         super().__init__(url)
-        self.params = {}
 
+        self.params = {}
 
     def request(self) -> requests.Response:
         return requests.get(self.url, params=self.params, data=self.payload, verify=True)

@@ -13,6 +13,12 @@ class RequestABC(ABC):
     """
 
     def __init__(self, url: str) -> None:
+        """Méthode constructrice
+
+        Args:
+            url (str): url du site
+        """
+
         super().__init__()
         self.url = url
         self.payload = {}
@@ -22,7 +28,7 @@ class RequestABC(ABC):
         """Renvoie la reponse de la requete
 
         Returns:
-            requests.Response: _description_
+            requests.Response: reponse de la requete
         """
 
     @abstractmethod
@@ -33,7 +39,7 @@ class RequestABC(ABC):
             data (dict): données qui doivent etre stocké
             element (str): element 
         """
-        
+
         payload = entitie.get_payload()
 
         self.payload[form.username] = payload
