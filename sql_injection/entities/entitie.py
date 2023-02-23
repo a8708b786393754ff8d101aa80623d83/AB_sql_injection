@@ -9,8 +9,9 @@ class Entitie(object):
         """Methode constructrice."""
 
         self.name = ''
+        self.f = open(self.name)
 
-    def get_name(self):
+    def get_name(self) -> str:
         """Renvoie le nom de l'entitée 
 
         Returns:
@@ -18,3 +19,17 @@ class Entitie(object):
         """
 
         return self.name
+
+    def get_payload(self) -> str:
+        """Renvoie la ligne suivante du payload
+
+        Returns:
+            str: payload
+        """
+
+        return self.f.readline().strip()
+
+    def __del__(self) -> None:
+        """Méthode destructrice, ferme le fichier."""
+
+        self.f.close()
