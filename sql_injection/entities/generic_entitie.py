@@ -9,8 +9,8 @@ class GenericEntitie(Entitie):
     """
 
     def __init__(self) -> None:
-        super().__init__()
         self.name = 'Generic'
+        super().__init__()
 
     def __del__(self) -> None:
         return super().__del__()

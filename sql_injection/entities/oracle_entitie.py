@@ -9,8 +9,8 @@ class OracleEntitie(Entitie):
     """
 
     def __init__(self) -> None:
-        super().__init__()
         self.name = 'Oracle'
+        super().__init__()
 
     def __del__(self) -> None:
         return super().__del__()

@@ -9,8 +9,8 @@ class Db2Entitie(Entitie):
     """
 
     def __init__(self) -> None:
-        super().__init__()
         self.name = 'Db2'
+        super().__init__()
 
     def __del__(self) -> None:
         return super().__del__()
