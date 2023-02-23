@@ -8,7 +8,7 @@ class Entitie(object):
     def __init__(self) -> None:
         """Methode constructrice."""
 
-        self.name = ''
+        self.name: str
         self.f = open(self.name)
 
     def get_name(self) -> str:
