@@ -31,6 +31,3 @@ class RequestGet(RequestABC):
                 self.params[key] += value
             else:
                 self.params[key] = value
-
-    def set_payload(self, data: dict, element: str) -> None: 
-        return super().set_params(data, element)

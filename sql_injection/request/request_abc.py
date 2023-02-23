@@ -1,5 +1,8 @@
-import requests
 from abc import ABC, abstractmethod
+
+import requests
+from sql_injection.entities.entitie import Entitie
+from sql_injection.form import Form
 
 
 class RequestABC(ABC):
@@ -21,18 +24,22 @@ class RequestABC(ABC):
         Returns:
             requests.Response: _description_
         """
-    
+
     @abstractmethod
-    def set_payload(self, data: dict, element: str) -> None: 
+    def set_payload(self, form: Form, entitie: Entitie) -> None:
         """Ajoute est formatte les donées dans l'attributs payload
 
         Args:
             data (dict): données qui doivent etre stocké
             element (str): element 
         """
+        
+        payload = entitie.get_payload()
 
-        for key, value in data.items(): 
-            if value: 
-                self.payload[key] = value
-            else:
-                self.payload[key] = element.strip()
+        self.payload[form.username] = payload
+        self.payload[form.password] = payload
+
+        for data in form.names:
+            for key, value in data.items():
+                if (key != form.username) and (key != form.password):
+                    self.payload[key] = value

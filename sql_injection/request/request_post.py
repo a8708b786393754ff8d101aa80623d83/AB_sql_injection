@@ -14,5 +14,5 @@ class RequestPost(RequestABC):
     def request(self) -> requests.Response:
         return requests.post(self.url, data=self.payload, verify=True)
 
-    def set_payload(self, data: dict, element: str) -> None: 
-        return super().set_params(data, element)
+    def set_payload(self, form, entitie) -> None:
+        return super().set_payload(form, entitie)
