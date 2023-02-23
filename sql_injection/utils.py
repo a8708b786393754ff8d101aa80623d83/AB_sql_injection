@@ -1,4 +1,18 @@
 import concurrent.futures
+from pathlib import Path
+
+
+def listing_path(path: Path) -> list: 
+    """Liste le contenue d'un dossier
+
+    Args:
+        path (Path): chemin relative 
+
+    Returns:
+        list: liste de fichier 
+    """
+
+    return [element for element in path.iterdir()]
 
 
 def before_last_lenght_file_element(file_name: str):
@@ -38,16 +52,16 @@ def calcul(length_content: int, operator: int):
     """
 
     calcul = int
-    if length_content > 1000000:# Million
+    if length_content > 1000000:  # Million
         calcul = length_content//10000
 
-    elif length_content > 100000: #cent mille
+    elif length_content > 100000:  # cent mille
         calcul = length_content//operator//1.8
 
-    elif length_content > 10000: #dix mille
+    elif length_content > 10000:  # dix mille
         calcul = length_content//operator//2
 
-    elif length_content > 1000:#mille
+    elif length_content > 1000:  # mille
         calcul = length_content//operator//3
 
     if calcul == 0:
@@ -68,7 +82,7 @@ def cutt(_list: list, result_calcul: int):
     """
 
     start = result_calcul
-    while(result_calcul < len(_list)):
+    while (result_calcul < len(_list)):
         yield _list[result_calcul:result_calcul+start]
         result_calcul += start
 
