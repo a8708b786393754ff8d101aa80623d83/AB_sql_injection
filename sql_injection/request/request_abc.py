@@ -33,6 +33,7 @@ class RequestABC(ABC):
             data (dict): données qui doivent etre stocké
             element (str): element 
         """
+        
         payload = entitie.get_payload()
 
         self.payload[form.username] = payload
