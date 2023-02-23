@@ -1,11 +1,12 @@
 from .request_abc import RequestABC
-import requests # lib PyPi requests
+import requests  # lib PyPi requests
 
-class RequestPost(RequestABC): 
-    """_summary_
+
+class RequestPost(RequestABC):
+    """Classe pour les requete en post
 
     Args:
-        RequestABC (_type_): _description_
+        RequestABC (object): classe mere
     """
 
     def __init__(self, url: str) -> None:

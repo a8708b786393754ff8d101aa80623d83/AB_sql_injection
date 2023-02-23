@@ -7,26 +7,41 @@ class Form(object):
     Args:
         object (object): object
     """
-    NAMES_USER = ['username', 'email', 'nom_utilisateur', 'session_key', 'session_username', 'session_user']
-    NAMES_PASSWORD = ['password', 'passwd', 'pass', 'motdepasse', 'session_password', 'session_passwd', 'session_pass']
+
+    NAMES_USER = ['username', 'email', 'nom_utilisateur',
+                  'session_key', 'session_username', 'session_user']
+    NAMES_PASSWORD = ['password', 'passwd', 'pass', 'motdepasse',
+                      'session_password', 'session_passwd', 'session_pass']
 
     def __init__(self, form: bs4.BeautifulSoup) -> None:
+        """Méthode constructrice
+
+        Args:
+            form (bs4.BeautifulSoup): soup du formulaire
+        """
+
         self.form = form
         self.password = ''
         self.username = ''
 
         self.__set_credentials()
-        
 
-    def __str__(self) -> str:
-        return self.form.__str__()
+    def __set_credentials(self) -> None:
+        """Methode privée pour ajoutée les name de connexion a leurs attribut."""
+
+        for element in self.names:
+            for key in element.keys():
+                if key in self.NAMES_USER:
+                    self.username = key
+                elif key in self.NAMES_PASSWORD:
+                    self.password = key
 
     @property
     def names(self) -> list[dict]:
-        """Renvoie une liste de tuple avec le name est sa valeur trouvée dans le formulaire
+        """Renvoie une liste qui contient des dictionnaire avec le name est sa valeur trouvée dans le formulaire
 
         Returns:
-            list[str]: liste de name
+            list[dict]: liste de dictionnaire
         """
 
         names = []
@@ -40,7 +55,7 @@ class Form(object):
         """Renvoie l'action du formulaire
 
         Returns:
-            str|list: action
+            str: action du formulaire
         """
 
         return self.form.get('action')
@@ -50,17 +65,7 @@ class Form(object):
         """Renvoie les methode du formulaire
 
         Returns:
-            str|list: method
+            str: methode d'envoie
         """
 
         return self.form.get('method')
-
-    def __set_credentials(self) -> None:
-        """Methode privée pour ajoutée les name de connexion a leurs attribut."""
-
-        for element in self.names:
-            for key in element.keys():
-                if key in self.NAMES_USER:
-                    self.username = key
-                elif key in self.NAMES_PASSWORD:
-                    self.password = key
