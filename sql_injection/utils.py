@@ -1,21 +1,7 @@
 import concurrent.futures
-from pathlib import Path
 
 
-def listing_path(path: Path) -> list: 
-    """Liste le contenue d'un dossier
-
-    Args:
-        path (Path): chemin relative 
-
-    Returns:
-        list: liste de fichier 
-    """
-
-    return [element for element in path.iterdir()]
-
-
-def before_last_lenght_file_element(file_name: str):
+def before_last_lenght_file_element(file_name: str) -> tuple:
     """  
     Remove the last 2 digits of the file length
     Args:
@@ -40,7 +26,7 @@ def before_last_lenght_file_element(file_name: str):
         return elements, len(elements)
 
 
-def calcul(length_content: int, operator: int):
+def calcul(length_content: int, operator: int) -> int:
     """
     Calculate on how much to cut the contents of the file
     Args:
@@ -70,7 +56,7 @@ def calcul(length_content: int, operator: int):
     return int(calcul)
 
 
-def cutt(_list: list, result_calcul: int):
+def cutt(_list: list, result_calcul: int) -> None:
     """
     Generator function which returns the elements of the file
     Args:
@@ -87,7 +73,7 @@ def cutt(_list: list, result_calcul: int):
         result_calcul += start
 
 
-def thread_executor(funct, elements: list, number_thread: int):
+def thread_executor(funct, elements: list, number_thread: int) -> None:
     """
     Function that executes the thread
     Args:
