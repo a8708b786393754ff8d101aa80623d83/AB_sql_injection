@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 import requests
-from sql_injection.entities.entitie import Entitie
 from sql_injection.form import Form
 
 
@@ -32,7 +31,7 @@ class RequestABC(ABC):
         """
 
     @abstractmethod
-    def set_payload(self, form: Form, entitie: Entitie) -> None:
+    def set_payload(self, form: Form, payload: str) -> None:
         """Ajoute est formatte les donées dans l'attributs payload
 
         Args:
@@ -40,10 +39,8 @@ class RequestABC(ABC):
             element (str): element 
         """
 
-        payload = entitie.get_payload()
-
-        self.payload[form.username] = payload
-        self.payload[form.password] = payload
+        self.payload[form.username] = payload.strip()
+        self.payload[form.password] = 'aa' #NOTE chaine au hashard
 
         for data in form.names:
             for key, value in data.items():
