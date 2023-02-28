@@ -1,7 +1,7 @@
 import concurrent.futures
 
 
-def before_last_lenght_file_element(file_name: str):
+def before_last_lenght_file_element(file_name: str) -> tuple:
     """  
     Remove the last 2 digits of the file length
     Args:
@@ -26,7 +26,7 @@ def before_last_lenght_file_element(file_name: str):
         return elements, len(elements)
 
 
-def calcul(length_content: int, operator: int):
+def calcul(length_content: int, operator: int) -> int:
     """
     Calculate on how much to cut the contents of the file
     Args:
@@ -38,16 +38,16 @@ def calcul(length_content: int, operator: int):
     """
 
     calcul = int
-    if length_content > 1000000:# Million
+    if length_content > 1000000:  # Million
         calcul = length_content//10000
 
-    elif length_content > 100000: #cent mille
+    elif length_content > 100000:  # cent mille
         calcul = length_content//operator//1.8
 
-    elif length_content > 10000: #dix mille
+    elif length_content > 10000:  # dix mille
         calcul = length_content//operator//2
 
-    elif length_content > 1000:#mille
+    elif length_content > 1000:  # mille
         calcul = length_content//operator//3
 
     if calcul == 0:
@@ -56,7 +56,7 @@ def calcul(length_content: int, operator: int):
     return int(calcul)
 
 
-def cutt(_list: list, result_calcul: int):
+def cutt(_list: list, result_calcul: int) -> None:
     """
     Generator function which returns the elements of the file
     Args:
@@ -68,12 +68,12 @@ def cutt(_list: list, result_calcul: int):
     """
 
     start = result_calcul
-    while(result_calcul < len(_list)):
+    while (result_calcul < len(_list)):
         yield _list[result_calcul:result_calcul+start]
         result_calcul += start
 
 
-def thread_executor(funct, elements: list, number_thread: int):
+def thread_executor(funct, elements: list, number_thread: int) -> None:
     """
     Function that executes the thread
     Args:
