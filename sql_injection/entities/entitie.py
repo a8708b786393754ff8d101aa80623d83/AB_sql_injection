@@ -1,5 +1,4 @@
 from pathlib import Path
-from sql_injection.utils import listing_path
 
 
 class Entitie(object):
@@ -24,20 +23,18 @@ class Entitie(object):
             FileNotFoundError: fichier non trouvée
         """
 
-        
         self.name: str
 
         if blind:
-            file = Path(self.PAYLOAD + self.SQL_BLIND + self.name + '_blind.txt')
+            file = Path(self.PAYLOAD + self.SQL_BLIND +
+                        self.name + '_blind.txt')
         else:
             file = Path(self.PAYLOAD + self.DETECT + self.name + '.txt')
 
-
-        if file.exists() and file.is_file(): 
+        if file.exists() and file.is_file():
             self.f = file.open()
-        else: 
+        else:
             raise FileNotFoundError()
-
 
     def get_name(self) -> str:
         """Renvoie le nom de l'entitée 
@@ -55,7 +52,7 @@ class Entitie(object):
         Returns:
             list: payloads
         """
-        
+
         return self.f.readlines()
 
     def __del__(self) -> None:
