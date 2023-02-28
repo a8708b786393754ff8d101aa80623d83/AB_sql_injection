@@ -22,6 +22,9 @@ class RequestABC(ABC):
         self.url = url
         self.payload = {}
 
+        # NOTE contenue de la page de la premiere requete qui fait office de test pour savoir si l'injection est reussiste
+        self.content_resp = self.request().content
+
     @abstractmethod
     def request(self) -> requests.Response:
         """Renvoie la reponse de la requete
@@ -40,7 +43,7 @@ class RequestABC(ABC):
         """
 
         self.payload[form.username] = payload.strip()
-        self.payload[form.password] = 'aa' #NOTE chaine au hashard
+        self.payload[form.password] = 'aa'  # NOTE chaine au hashard
 
         for data in form.names:
             for key, value in data.items():
