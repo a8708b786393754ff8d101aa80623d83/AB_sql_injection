@@ -35,8 +35,8 @@ class RequestABC(ABC):
         """Ajoute est formatte les donées dans l'attributs payload
 
         Args:
-            data (dict): données qui doivent etre stocké
-            element (str): element 
+            form (Form): object Form 
+            payload (str): payload sql 
         """
 
         self.payload[form.username] = payload.strip()
