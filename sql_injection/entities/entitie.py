@@ -1,4 +1,5 @@
 from pathlib import Path
+from sql_injection.utils import listing_path
 
 
 class Entitie(object):
@@ -25,16 +26,14 @@ class Entitie(object):
 
         
         self.name: str
-        #FIXME ajout liste de fichier est le regroupement du contenue des fichiers
 
         if blind:
-            file = Path(self.PAYLOAD + self.SQL_BLIND + self.name)
+            file = Path(self.PAYLOAD + self.SQL_BLIND + self.name + '_blind.txt')
         else:
-            file = Path(self.PAYLOAD + self.DETECT + self.name)
+            file = Path(self.PAYLOAD + self.DETECT + self.name + '.txt')
 
-        
 
-        if file.exists() and file: 
+        if file.exists() and file.is_file(): 
             self.f = file.open()
         else: 
             raise FileNotFoundError()
@@ -49,14 +48,15 @@ class Entitie(object):
 
         return self.name
 
-    def get_payload(self) -> str:
-        """Renvoie la ligne suivante du payload
+    @property
+    def payloads(self) -> list:
+        """Renvoie les payloads
 
         Returns:
-            str: payload
+            list: payloads
         """
         
-        return self.f.readline().strip()
+        return self.f.readlines()
 
     def __del__(self) -> None:
         """Méthode destructrice, ferme le fichier."""
