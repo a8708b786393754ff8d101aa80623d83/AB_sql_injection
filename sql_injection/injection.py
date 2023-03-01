@@ -1,10 +1,10 @@
-from request.request_abc import RequestABC
+from sql_injection.request.request_abc import RequestABC
 from requests import Response
 
 
 class Injection(object):
-    def __init__(self) -> None:
-        pass
+    def __init__(self, error: str | None) -> None:
+        self.error = error
 
     def successful(self, req: RequestABC, resp: Response) -> bool:
         """Verifie si le contenue de la page sans paylaod est la meme que celle avec le payload, 
@@ -19,6 +19,5 @@ class Injection(object):
         """
 
         if resp.ok:
-            return req.content_resp != resp.content
-
-        return False
+            if self.error:
+                return not self.error in resp.content.decode()
