@@ -1,4 +1,32 @@
 import concurrent.futures
+import requests 
+
+def is_error(resp: requests.Response, failed: str) -> bool: 
+    """Regarde si il ya un message d'erruer
+
+    Args:
+        resp (requests.Response): reponse de la requete
+        failed (str): message d'erruer de connexion
+
+    Returns:
+        bool: True si il y a le message d'erruer, False si il'y en a pas.
+    """
+
+    return failed in resp.text
+
+def successful_injection(resp_one: str, resp_two: str) -> bool: 
+    """Verifie si le contenue de la page sans paylaod est la meme que celle avec le payload, 
+    si c'est pas la meme,c'est que l'injection a reussi
+
+    Args:
+        resp_one (str): contenue de la page avant le payload
+        resp_two (str): contenue de la page avec le payload
+
+    Returns:
+        bool: True si la reponse avec le payload n'est pas la meme que sans payload, False si c'est la meme
+    """
+    
+    return resp_two != resp_one
 
 
 def before_last_lenght_file_element(file_name: str) -> tuple:
