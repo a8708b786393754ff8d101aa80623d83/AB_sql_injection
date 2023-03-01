@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
+from sql_injection.form import Form
 
 import requests
-from sql_injection.form import Form
 
 
 class RequestABC(ABC):
@@ -20,8 +20,7 @@ class RequestABC(ABC):
 
         super().__init__()
         self.url = url
-        self.payload = {}
-
+        self.data = {}
         # NOTE contenue de la page de la premiere requete qui fait office de test pour savoir si l'injection est reussiste
         self.content_resp = self.request().content.decode()
 
@@ -33,19 +32,18 @@ class RequestABC(ABC):
             requests.Response: reponse de la requete
         """
 
-    @abstractmethod
-    def set_payload(self, form: Form, payload: str) -> None:
-        """Ajoute est formatte les donées dans l'attributs payload
+    def set_data(self, form: Form, payload: str) -> None:
+        """Ajoute est formatte les donées dans l'attributs data
 
         Args:
             form (Form): object Form 
             payload (str): payload sql 
         """
 
-        self.payload[form.username] = payload.strip()
-        self.payload[form.password] = 'aa'  # NOTE chaine au hashard
+        self.data[form.username] = payload.strip()
+        self.data[form.password] = 'aa'  # NOTE chaine au hashard
 
         for data in form.names:
             for key, value in data.items():
                 if (key != form.username) and (key != form.password):
-                    self.payload[key] = value
+                    self.data[key] = value

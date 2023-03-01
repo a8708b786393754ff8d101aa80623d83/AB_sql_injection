@@ -1,5 +1,6 @@
-from .request_abc import RequestABC
 import requests  # lib PyPi requests
+
+from .request_abc import RequestABC
 
 
 class RequestPost(RequestABC):
@@ -13,7 +14,4 @@ class RequestPost(RequestABC):
         super().__init__(url)
 
     def request(self) -> requests.Response:
-        return requests.post(self.url, data=self.payload, verify=True)
-
-    def set_payload(self, form, entitie) -> None:
-        return super().set_payload(form, entitie)
+        return requests.post(self.url, data=self.data, verify=True)
