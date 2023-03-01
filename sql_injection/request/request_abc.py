@@ -23,7 +23,7 @@ class RequestABC(ABC):
         self.payload = {}
 
         # NOTE contenue de la page de la premiere requete qui fait office de test pour savoir si l'injection est reussiste
-        self.content_resp = self.request().content
+        self.content_resp = self.request().content.decode()
 
     @abstractmethod
     def request(self) -> requests.Response:
